@@ -16,6 +16,11 @@ export default {
           icon: "pi pi-fw pi-file",
           to: "/main",
         },
+        {
+          label: "商品頁",
+          icon: "pi pi-fw pi-file",
+          to: "/product",
+        },
       ],
     };
   },
