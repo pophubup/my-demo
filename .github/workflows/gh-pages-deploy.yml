@@ -23,4 +23,4 @@ jobs:
           git config user.name "Goodarc\Yukai" && git config user.email "yuki@goodarc.com"
           npm run gh-pages-deploy
       - name: "Check My screctkey"
-        run: echo "my ${{ secrets.API_AUTH }}!
+        run: echo  "${{ secrets.API_AUTH }}"
