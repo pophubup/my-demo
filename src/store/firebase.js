@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, writeBatch, doc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+console.log(process.env.API_AUTH, process.env)
 const firebaseConfig = process.env.NODE_ENV === "production" ? process.env.API_AUTH : require('../../connection.json');
 const base = initializeApp(firebaseConfig);
 const firestore = getFirestore(base);
