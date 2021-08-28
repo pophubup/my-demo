@@ -136,10 +136,10 @@ export default {
     };
   },
   async mounted() {
-    if(this.products.length == 0){
+   
       await this.$store.dispatch('product/loadProducts', {forceRefresh : true});
       this.products = this.$store.getters["product/getProducts"];
-    }
+    
   
   },
   methods: {
