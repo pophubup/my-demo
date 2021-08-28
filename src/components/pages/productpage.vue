@@ -1,16 +1,18 @@
 <template>
-  <div class="card">
+<div class="p-col-12" style="padding-top: 50px;" >
+   <h2>圖片展示頁</h2>
+   <div class="card" >
     <DataView
       :value="products"
       :layout="layout"
       :paginator="true"
-      :rows="9"
-      :sortOrder="sortOrder"
-      :sortField="sortField"
+      :rows="6"
+      st
+   
     >
-      <template #header>
-        <div class="p-grid p-nogutter">
-          <div class="p-col-6" style="text-align: left">
+      <!-- <template #header> -->
+        <!-- <div class="p-grid p-nogutter"> -->
+          <!-- <div class="p-col-6" style="text-align: left">
             <Dropdown
               v-model="sortKey"
               :options="sortOptions"
@@ -18,49 +20,49 @@
               placeholder="Sort By Price"
               @change="onSortChange($event)"
             />
-          </div>
+          </div> -->
           <div class="p-col-6" style="text-align: right">
             <DataViewLayoutOptions v-model="layout" />
           </div>
-        </div>
-      </template>
+        <!-- </div> -->
+      <!-- </template> -->
 
       <template #list="slotProps">
         <div class="p-col-12">
           <div class="product-list-item">
             <img
-              src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+              src="https://photos.smugmug.com/photos/i-SvJxnbM/0/S/i-SvJxnbM-S.jpg"
               :alt="slotProps.data.name"
             />
             <div class="product-list-detail">
-              <div class="product-name">{{ slotProps.data.name }}</div>
+              <!-- <div class="product-name">{{ slotProps.data.name }}</div>
               <div class="product-description">
                 {{ slotProps.data.description }}
-              </div>
-              <Rating
+              </div> -->
+              <!-- <Rating
                 :modelValue="slotProps.data.rating"
                 :readonly="true"
                 :cancel="false"
-              ></Rating>
-              <i class="pi pi-tag product-category-icon"></i
+              ></Rating> -->
+              <!-- <i class="pi pi-tag product-category-icon"></i
               ><span class="product-category">{{
                 slotProps.data.category
-              }}</span>
+              }}</span> -->
             </div>
             <div class="product-list-action">
-              <span class="product-price">${{ slotProps.data.price }}</span>
-              <Button
+              <!-- <span class="product-price">${{ slotProps.data.price }}</span> -->
+              <!-- <Button
                 icon="pi pi-shopping-cart"
                 label="Add to Cart"
                 :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
-              ></Button>
-              <span
+              ></Button> -->
+              <!-- <span
                 :class="
                   'product-badge status-' +
-                  slotProps.data.inventoryStatus.toLowerCase()
+                    slotProps.data.inventoryStatus.toLowerCase()
                 "
                 >{{ slotProps.data.inventoryStatus }}</span
-              >
+              > -->
             </div>
           </div>
         </div>
@@ -69,95 +71,93 @@
       <template #grid="slotProps">
         <div class="p-col-12 p-md-4">
           <div class="product-grid-item card">
-            <div class="product-grid-item-top">
-              <div>
+           <!-- <div class="product-grid-item-top">
+               <div>
                 <i class="pi pi-tag product-category-icon"></i>
                 <span class="product-category">{{
                   slotProps.data.category
                 }}</span>
-              </div>
+              </div> 
               <span
                 :class="
                   'product-badge status-' +
-                  slotProps.data.inventoryStatus.toLowerCase()
+                    slotProps.data.inventoryStatus.toLowerCase()
                 "
                 >{{ slotProps.data.inventoryStatus }}</span
-              >
-            </div>
+              > 
+            </div>-->
             <div class="product-grid-item-content">
               <img
-                src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+                src="https://photos.smugmug.com/photos/i-SvJxnbM/0/S/i-SvJxnbM-S.jpg"
                 :alt="slotProps.data.name"
+                @click="GetUserStatement"
               />
-              <div class="product-name">{{ slotProps.data.name }}</div>
-              <div class="product-description">
+              <!-- <div class="product-name">{{ slotProps.data.name }}</div> -->
+              <!-- <div class="product-description">
                 {{ slotProps.data.description }}
               </div>
               <Rating
                 :modelValue="slotProps.data.rating"
                 :readonly="true"
                 :cancel="false"
-              ></Rating>
+              ></Rating> -->
             </div>
-            <div class="product-grid-item-bottom">
+            <!-- <div class="product-grid-item-bottom">
               <span class="product-price">${{ slotProps.data.price }}</span>
               <Button
                 icon="pi pi-shopping-cart"
                 :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
               ></Button>
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
     </DataView>
   </div>
+  </div>
+ 
 </template>
 
 <script>
-import DataView from "primevue/dataview";
-import Button from "primevue/button";
-import Rating from "primevue/rating";
-import Dropdown from "primevue/dropdown";
-import "primeflex/primeflex.css";
+
+
 export default {
-  components: {
-    DataView,
-    Button,
-    Rating,
-    Dropdown,
-  },
   data() {
     return {
       products: null,
       layout: "grid",
-      sortKey: null,
-      sortOrder: null,
-      sortField: null,
-      sortOptions: [
-        { label: "Price High to Low", value: "!price" },
-        { label: "Price Low to High", value: "price" },
-      ],
+      // sortKey: null,
+      // sortOrder: null,
+      // sortField: null,
+      // sortOptions: [
+      //   { label: "Price High to Low", value: "!price" },
+      //   { label: "Price Low to High", value: "price" },
+      // ],
     };
   },
-  mounted() {
-    this.products = this.$store.getters["product/getProducts"];
-    console.log(this.$store.getters["product/getProducts"]);
+  async mounted() {
+    if(this.products.length == 0){
+      await this.$store.dispatch('product/loadProducts', {forceRefresh : true});
+      this.products = this.$store.getters["product/getProducts"];
+    }
+  
   },
   methods: {
-    onSortChange(event) {
-      const value = event.value.value;
-      const sortValue = event.value;
+   
+    // onSortChange(event) {
+    //   const value = event.value.value;
+    //   const sortValue = event.value;
 
-      if (value.indexOf("!") === 0) {
-        this.sortOrder = -1;
-        this.sortField = value.substring(1, value.length);
-        this.sortKey = sortValue;
-      } else {
-        this.sortOrder = 1;
-        this.sortField = value;
-        this.sortKey = sortValue;
-      }
-    },
+    //   if (value.indexOf("!") === 0) {
+    //     this.sortOrder = -1;
+    //     this.sortField = value.substring(1, value.length);
+    //     this.sortKey = sortValue;
+    //   } else {
+    //     this.sortOrder = 1;
+    //     this.sortField = value;
+    //     this.sortKey = sortValue;
+    //   }
+    // },
   },
 };
 </script>
