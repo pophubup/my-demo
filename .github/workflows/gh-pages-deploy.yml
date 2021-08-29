@@ -18,8 +18,8 @@ jobs:
         run: |
           npm install
           npm run-script build
-       env:
-         API_AUTH: ${{ secrets.API_AUTH }}
+        env:
+          API_AUTH: ${{ secrets.API_AUTH }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
