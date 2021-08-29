@@ -16,10 +16,11 @@ jobs:
         run: | #注意我这里是使用的yarn管理包，如果你使用的npm，请换成npm的命令：npm install和npm run build
           npm install
           npm run build
+        env: 
+          API_AUTH : ${{ secrets.API_AUTH }}
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
-          ACCESS_TOKEN: ${{ secrets.API_AUTH }} #secrets.ACCESS_TOKEN是项目配置的密钥
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
