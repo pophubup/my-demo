@@ -4,34 +4,30 @@ on:
     branches:
       - feature/productpage開發
 jobs:
-  gh-pages-deploy:
-    name: Deploying to gh-pages
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v1.4.4
-        with:
-          version:  12.x
       - name: Checkout branch
         uses: actions/checkout@v2
 
       - name: "Check My screctkey"
         run: echo  "${{ secrets.API_AUTH }}" 
 
-      - name: Create .env file
+      - name: Build
         run: |
-          touch .env
-          echo API_AUTH='{"apiKey":"AIzaSyCjjT5MiOsBNAarIO--4dWSvYPRrQr2sFo","authDomain":"getproducts-92bee.firebaseapp.com","projectId":"getproducts-92bee","storageBucket":"getproducts-92bee.appspot.com"}' >> .env
+          npm install
+          npm run-script build
+       env:
+         API_AUTH: ${{ secrets.API_AUTH }}
 
-      - name: Delete gitignore
-        run: rm .gitignore
-
-      - name: Clean install dependencies
-        run: npm ci
-
-      - name: Run deploy script
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         run: |
           git config user.name "Goodarc\Yukai" && git config user.email "yuki@goodarc.com"
           npm run gh-pages-deploy
+        with:
+          BRANCH: gh-pages
+          FOLDER: dist 
  
     
