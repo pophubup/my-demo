@@ -1,5 +1,15 @@
 <template>
-  <Menubar :model="items" />
+  <Menubar :model="items" class="p-col-12"  style="position: fixed !important;">
+     <!-- <template #start>
+        Before
+    </template>
+    <template #item="{item}">
+        <a :href="item.to">{{item.label}}</a>
+    </template>
+    <template #end>
+        After
+    </template> -->
+    </Menubar>
 </template>
 
 <script>
@@ -20,6 +30,11 @@ export default {
           label: "商品頁",
           icon: "pi pi-fw pi-file",
           to: "/product",
+        },
+          {
+          label: "商品修改新增頁",
+          icon: "pi pi-fw pi-file",
+          to: "/productInsertOrEdit",
         },
       ],
     };

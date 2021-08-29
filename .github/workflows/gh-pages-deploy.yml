@@ -1,24 +1,19 @@
-name: Deploy to github pages
+name: GitHub Actions Build and Deploy Demo
 on:
   push:
     branches:
       - feature/productpage開發
 jobs:
-  gh-pages-deploy:
-    name: Deploying to gh-pages
+  build_vue:
     runs-on: ubuntu-latest
+    name: Build Vue
     steps:
-      - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v1.4.4
-        with:
-          version:  12.x
-      - name: Checkout branch
-        uses: actions/checkout@v2
-
-      - name: Clean install dependencies
-        run: npm ci
-
-      - name: Run deploy script
-        run: |
-          git config user.name "Goodarc\Yukai" && git config user.email "yuki@goodarc.com"
-          npm run gh-pages-deploy
+    - uses: actions/checkout@v2
+    - id: Build-Vue
+      uses: xRealNeon/VuePagesAction@1.0.0
+      with:
+        username: 'pophubup'
+        reponame: 'my-demo'
+        token:  ${{ secrets.ACCESS_TOKEN }}
+      env:
+        API_AUTH: ${{ secrets.API_AUTH }}
