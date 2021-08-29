@@ -21,8 +21,6 @@ jobs:
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
-        run: |
-          git config user.name "Goodarc\Yukai" && git config user.email "yuki@goodarc.com"
         with:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist # The folder the action should deploy.
