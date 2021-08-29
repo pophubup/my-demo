@@ -12,8 +12,8 @@ jobs:
     - id: Build-Vue
       uses: xRealNeon/VuePagesAction@1.0.0
       with:
-        username: 'jasonfritsche'
-        reponame: 'weather-vue'
+        username: 'yukai'
+        reponame: 'my-demo'
         token:  ${{ secrets.ACCESS_TOKEN }}
       env:
         API_AUTH: ${{ secrets.API_AUTH }}
