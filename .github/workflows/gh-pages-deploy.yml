@@ -12,6 +12,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: check secrets from github
+        run : echo "the secrect ${{ secrets.API_AUTH }}"
+      
       - name: Install and Build ? # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: | #注意我这里是使用的yarn管理包，如果你使用的npm，请换成npm的命令：npm install和npm run build
           npm i
