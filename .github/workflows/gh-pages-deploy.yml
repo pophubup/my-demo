@@ -21,7 +21,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo API_AUTH=${{ secrets.API_AUTH }} >> .env
+          echo API_AUTH='{"apiKey":"AIzaSyCjjT5MiOsBNAarIO--4dWSvYPRrQr2sFo","authDomain":"getproducts-92bee.firebaseapp.com","projectId":"getproducts-92bee","storageBucket":"getproducts-92bee.appspot.com"}' >> .env
 
       - name: Delete gitignore
         run: rm .gitignore
