@@ -14,10 +14,10 @@ jobs:
       - name: "Check My screctkey"
         run: echo  "${{ secrets.API_AUTH }}" 
 
-      - name: Build
+      - name: Install and Build
         run: |
           npm install
-          npm run-script build
+          npm run build
         env:
           API_AUTH: ${{ secrets.API_AUTH }}
 
