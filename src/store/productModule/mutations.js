@@ -3,6 +3,6 @@ export default {
         state.products = payload;
     },
     InsertProduct(state, payload) {
-        state.products.concat(payload);
+        state.products.push(payload);
     }
 }
