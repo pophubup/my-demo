@@ -10,10 +10,24 @@
         <template #header>
           <img :alt="cardalt" :src="cardsrc" />
         </template>
-        <template #content> {{ carcontent }}</template>
+        <template #content>
+          {{ carcontent }}
+        </template>
       </Card>
     </Dialog>
-
+    <Dialog
+      id="myLoding"
+      :closable="false"
+      :dismissableMask="false"
+      :header="null"
+      style="width: 150px"
+      :modal="true"
+      v-model:visible="isLoading"
+    >
+      <!-- <div class="p-col-4 p-offset-5"> -->
+      <ProgressSpinner mode="indeterminate" />
+      <!-- </div> -->
+    </Dialog>
     <h2>圖片展示頁</h2>
     <div class="card">
       <DataView
@@ -137,6 +151,7 @@ export default {
   data() {
     return {
       display: false,
+      isLoading: false,
       products: null,
       layout: "grid",
       content: "",
@@ -154,8 +169,10 @@ export default {
     };
   },
   async mounted() {
+    this.isLoading = true;
     await this.$store.dispatch("product/loadProducts", { forceRefresh: true });
     this.products = this.$store.getters["product/getProducts"];
+    this.isLoading = false;
   },
   methods: {
     imgclick(data) {
@@ -195,6 +212,7 @@ export default {
     width: 300px !important;
   }
 }
+
 .card {
   background: #ffffff;
   padding: 2rem;

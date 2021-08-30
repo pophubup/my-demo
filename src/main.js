@@ -12,6 +12,8 @@ import Rating from "primevue/rating";
 import Dropdown from "primevue/dropdown";
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
+import ScrollPanel from 'primevue/scrollpanel';
+import ProgressSpinner from 'primevue/progressspinner';
 
 const app = createApp(App);
 app.use(PrimeVue);
@@ -22,7 +24,9 @@ app.component('Rating', Rating);
 app.component('Dropdown', Dropdown);
 app.component('Toast', Toast);
 app.component('Dialog', Dialog);
-app.component('Card', Card)
+app.component('Card', Card);
+app.component('ScrollPanel', ScrollPanel);
+app.component('ProgressSpinner', ProgressSpinner);
 app.use(ToastService);
 app.use(router);
 app.use(store);
