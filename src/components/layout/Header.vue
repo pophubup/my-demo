@@ -1,6 +1,6 @@
 <template>
-  <Menubar :model="items" class="p-col-12"  style="position: fixed !important;">
-     <!-- <template #start>
+  <Menubar :model="items" class="p-col-12" style="position: fixed !important">
+    <!-- <template #start>
         Before
     </template>
     <template #item="{item}">
@@ -9,7 +9,7 @@
     <template #end>
         After
     </template> -->
-    </Menubar>
+  </Menubar>
 </template>
 
 <script>
@@ -22,7 +22,7 @@ export default {
     return {
       items: [
         {
-          label: "主頁",
+          label: "關於我",
           icon: "pi pi-fw pi-file",
           to: "/main",
         },
@@ -31,10 +31,15 @@ export default {
           icon: "pi pi-fw pi-file",
           to: "/product",
         },
-          {
-          label: "商品修改新增頁",
+        {
+          label: "商品新增頁",
           icon: "pi pi-fw pi-file",
-          to: "/productInsertOrEdit",
+          to: "/productInsert",
+        },
+        {
+          label: "商品修改頁",
+          icon: "pi pi-fw pi-file",
+          to: "/productEdit",
         },
       ],
     };
