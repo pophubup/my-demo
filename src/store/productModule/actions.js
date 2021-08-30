@@ -25,9 +25,9 @@ export default {
         console.log(products)
         context.commit('setProducts', products);
     },
-    async insertProducts(context, payload) {
+    insertProducts(context, payload) {
 
-        await payload.forEach(async g => {
+        payload.forEach(async g => {
             let obj = {
                 category: '123',
                 description: '456',
