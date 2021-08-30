@@ -1,5 +1,19 @@
 <template>
   <div class="p-col-12" style="padding-top: 50px">
+    <Dialog
+      :header="header"
+      v-model:visible="display"
+      :style="{ width: '70vw' }"
+      :modal="true"
+    >
+      <Card>
+        <template #header>
+          <img :alt="cardalt" :src="cardsrc" />
+        </template>
+        <template #content> {{ carcontent }}</template>
+      </Card>
+    </Dialog>
+
     <h2>圖片展示頁</h2>
     <div class="card">
       <DataView
@@ -29,7 +43,11 @@
         <template #list="slotProps">
           <div class="p-col-12">
             <div class="product-list-item">
-              <img :src="slotProps.data.image" :alt="slotProps.data.name" />
+              <img
+                :src="slotProps.data.image"
+                :alt="slotProps.data.name"
+                @click="imgclick(slotProps.data)"
+              />
               <div class="product-list-detail">
                 <!-- <div class="product-name">{{ slotProps.data.name }}</div>
               <div class="product-description">
@@ -87,7 +105,7 @@
                   style="width: 450px; height: 300px"
                   :src="slotProps.data.image"
                   :alt="slotProps.data.name"
-                  @click="GetUserStatement"
+                  @click="imgclick(slotProps.data)"
                 />
                 <!-- <div class="product-name">{{ slotProps.data.name }}</div> -->
                 <!-- <div class="product-description">
@@ -118,8 +136,14 @@
 export default {
   data() {
     return {
+      display: false,
       products: null,
       layout: "grid",
+      content: "",
+      cardsrc: "",
+      cardalt: "",
+      carcontent: "",
+      header: "",
       // sortKey: null,
       // sortOrder: null,
       // sortField: null,
@@ -134,6 +158,14 @@ export default {
     this.products = this.$store.getters["product/getProducts"];
   },
   methods: {
+    imgclick(data) {
+      console.log(data);
+      this.header = data.name;
+      this.cardsrc = data.image;
+      this.cardalt = data.name;
+      this.carcontent = data.description;
+      this.display = true;
+    },
     // onSortChange(event) {
     //   const value = event.value.value;
     //   const sortValue = event.value;
@@ -152,6 +184,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  img {
+    width: 200px !important;
+  }
+}
+
+@media only screen and (min-width: 1370px) and (max-width: 1605px) {
+  img {
+    width: 300px !important;
+  }
+}
 .card {
   background: #ffffff;
   padding: 2rem;

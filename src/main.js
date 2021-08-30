@@ -10,6 +10,8 @@ import Button from 'primevue/button';
 import DataView from "primevue/dataview";
 import Rating from "primevue/rating";
 import Dropdown from "primevue/dropdown";
+import Dialog from 'primevue/dialog';
+import Card from 'primevue/card';
 
 const app = createApp(App);
 app.use(PrimeVue);
@@ -19,6 +21,8 @@ app.component('DataView', DataView);
 app.component('Rating', Rating);
 app.component('Dropdown', Dropdown);
 app.component('Toast', Toast);
+app.component('Dialog', Dialog);
+app.component('Card', Card)
 app.use(ToastService);
 app.use(router);
 app.use(store);
