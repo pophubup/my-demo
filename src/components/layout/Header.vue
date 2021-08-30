@@ -36,6 +36,11 @@ export default {
           icon: "pi pi-fw pi-file",
           to: "/productInsertOrEdit",
         },
+           {
+          label: "contact",
+          icon: "pi pi-fw pi-file",
+          to: "/contact",
+        },
       ],
     };
   },
