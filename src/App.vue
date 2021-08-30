@@ -1,16 +1,23 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <Header />
+<div>
+   <Header />
+    <router-view v-slot="{ Component }"> 
     <transition name="route" mode="out-in">
       <keep-alive>
         <component :is="Component" />
       </keep-alive>
     </transition>
   </router-view>
+</div>
+ 
 </template>
 
 <script>
 import Header from "./components/layout/Header.vue";
+import "primeflex/primeflex.css";
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
 export default {
   components: {
     Header,
@@ -19,13 +26,7 @@ export default {
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 
-html {
-  font-family: "Roboto", sans-serif;
-}
 
 body {
   margin: 0;
