@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, writeBatch, doc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 console.log(process.env.API_AUTH, process.env)
-    //const firebaseConfig = process.env.NODE_ENV === "production" ? process.env.API_AUTH : require('../../connection.json');
+//const firebaseConfig = process.env.NODE_ENV === "production" ? process.env.API_AUTH : require('../../connection.json');
 const firebaseConfig = {
     "apiKey": "AIzaSyCjjT5MiOsBNAarIO--4dWSvYPRrQr2sFo",
     "authDomain": "getproducts-92bee.firebaseapp.com",
@@ -14,46 +14,52 @@ const firestore = getFirestore(base);
 const storage = getStorage(base);
 
 //#region Create
-export const InsertPircture = async(arr) => {
+export const InsertPircture = async (obj) => {
 
-    await arr.forEach(async(data) => {
-        const storageRef = ref(storage, data.name);
-        const result = await uploadBytes(storageRef, data.file)
-        console.log(result)
-    })
+    const storageRef = ref(storage, obj.id);
+    await uploadBytes(storageRef, obj.file)
+    const url = await getDownloadURL(storageRef)
+    obj.image = url
 
 }
-export const InsertProducts = async(arr) => {
-        try {
-            const batch = writeBatch(firestore);
-            let msg = '';
-            arr.forEach(g => {
-                let nycRef = doc(firestore, "NewProducts", g.name);
-                batch.set(nycRef, g);
-                msg += g.name;
-            });
-            await batch.commit();
-            return { isSuccess: true, success: `${msg}\n新增成功` }
-        } catch (err) {
-            return { isSuccess: false, error: err }
-        }
+export const InsertProducts = async (obj) => {
+    try {
+        const batch = writeBatch(firestore);
+        console.log(obj)
+        let msg = '';
+        let nycRef = doc(firestore, "NewProducts", obj.id);
 
+        batch.set(nycRef, {
+            category: obj.category,
+            description: obj.description,
+            id: obj.id,
+            name: obj.name,
+            image: obj.image
 
+        });
+        msg += obj.name;
+        await batch.commit();
+        return { isSuccess: true, success: `${msg}\n新增成功` }
+    } catch (err) {
+        return { isSuccess: false, error: err }
     }
-    //#endregion
-    //#region Read
-export const getProducts = async() => {
-        let porduct = [];
-        const products = await getDocs(collection(firestore, "NewProducts"));
-        products.forEach((doc) => {
-            porduct.push({
-                "id": doc.data().id,
-                "name": doc.data().name,
-                "image": doc.data().image,
-                "description": doc.data().description
-            })
 
+
+}
+//#endregion
+//#region Read
+export const getProducts = async () => {
+    let porduct = [];
+    const products = await getDocs(collection(firestore, "NewProducts"));
+    products.forEach((doc) => {
+        porduct.push({
+            "id": doc.data().id,
+            "name": doc.data().name,
+            "image": doc.data().image,
+            "description": doc.data().description
         })
-        return porduct
-    }
+
+    })
+    return porduct
+}
     //#endregion

@@ -1,18 +1,17 @@
 <template>
-<div class="p-col-12" style="padding-top: 50px;" >
-   <h2>圖片展示頁</h2>
-   <div class="card" >
-    <DataView
-      :value="products"
-      :layout="layout"
-      :paginator="true"
-      :rows="6"
-      st
-   
-    >
-      <!-- <template #header> -->
+  <div class="p-col-12" style="padding-top: 50px">
+    <h2>圖片展示頁</h2>
+    <div class="card">
+      <DataView
+        :value="products"
+        :layout="layout"
+        :paginator="true"
+        :rows="6"
+        st
+      >
+        <!-- <template #header> -->
         <!-- <div class="p-grid p-nogutter"> -->
-          <!-- <div class="p-col-6" style="text-align: left">
+        <!-- <div class="p-col-6" style="text-align: left">
             <Dropdown
               v-model="sortKey"
               :options="sortOptions"
@@ -21,57 +20,54 @@
               @change="onSortChange($event)"
             />
           </div> -->
-          <div class="p-col-6" style="text-align: right">
-            <DataViewLayoutOptions v-model="layout" />
-          </div>
+        <div class="p-col-6" style="text-align: right">
+          <DataViewLayoutOptions v-model="layout" />
+        </div>
         <!-- </div> -->
-      <!-- </template> -->
+        <!-- </template> -->
 
-      <template #list="slotProps">
-        <div class="p-col-12">
-          <div class="product-list-item">
-            <img
-              src="https://photos.smugmug.com/photos/i-SvJxnbM/0/S/i-SvJxnbM-S.jpg"
-              :alt="slotProps.data.name"
-            />
-            <div class="product-list-detail">
-              <!-- <div class="product-name">{{ slotProps.data.name }}</div>
+        <template #list="slotProps">
+          <div class="p-col-12">
+            <div class="product-list-item">
+              <img :src="slotProps.data.image" :alt="slotProps.data.name" />
+              <div class="product-list-detail">
+                <!-- <div class="product-name">{{ slotProps.data.name }}</div>
               <div class="product-description">
                 {{ slotProps.data.description }}
               </div> -->
-              <!-- <Rating
+                <!-- <Rating
                 :modelValue="slotProps.data.rating"
                 :readonly="true"
                 :cancel="false"
               ></Rating> -->
-              <!-- <i class="pi pi-tag product-category-icon"></i
+                <!-- <i class="pi pi-tag product-category-icon"></i
               ><span class="product-category">{{
                 slotProps.data.category
               }}</span> -->
-            </div>
-            <div class="product-list-action">
-              <!-- <span class="product-price">${{ slotProps.data.price }}</span> -->
-              <!-- <Button
+              </div>
+              <div class="product-list-action">
+                <!-- <span class="product-price">${{ slotProps.data.price }}</span> -->
+                <!-- <Button
                 icon="pi pi-shopping-cart"
                 label="Add to Cart"
                 :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
               ></Button> -->
-              <!-- <span
+                <!-- <span
                 :class="
                   'product-badge status-' +
                     slotProps.data.inventoryStatus.toLowerCase()
                 "
                 >{{ slotProps.data.inventoryStatus }}</span
               > -->
+              </div>
             </div>
           </div>
-        </div>
-      </template>
+        </template>
 
-      <template #grid="slotProps">
-        <div class="p-col-12 p-md-4">
-          <div class="product-grid-item card">
-           <!-- <div class="product-grid-item-top">
+        <template #grid="slotProps">
+          <div class="p-col-12 p-md-4">
+            <div class="product-grid-item card">
+              <!-- <div class="product-grid-item-top">
                <div>
                 <i class="pi pi-tag product-category-icon"></i>
                 <span class="product-category">{{
@@ -86,14 +82,15 @@
                 >{{ slotProps.data.inventoryStatus }}</span
               > 
             </div>-->
-            <div class="product-grid-item-content">
-              <img
-                src="https://photos.smugmug.com/photos/i-SvJxnbM/0/S/i-SvJxnbM-S.jpg"
-                :alt="slotProps.data.name"
-                @click="GetUserStatement"
-              />
-              <!-- <div class="product-name">{{ slotProps.data.name }}</div> -->
-              <!-- <div class="product-description">
+              <div class="product-grid-item-content">
+                <img
+                  style="width: 450px; height: 300px"
+                  :src="slotProps.data.image"
+                  :alt="slotProps.data.name"
+                  @click="GetUserStatement"
+                />
+                <!-- <div class="product-name">{{ slotProps.data.name }}</div> -->
+                <!-- <div class="product-description">
                 {{ slotProps.data.description }}
               </div>
               <Rating
@@ -101,26 +98,23 @@
                 :readonly="true"
                 :cancel="false"
               ></Rating> -->
-            </div>
-            <!-- <div class="product-grid-item-bottom">
+              </div>
+              <!-- <div class="product-grid-item-bottom">
               <span class="product-price">${{ slotProps.data.price }}</span>
               <Button
                 icon="pi pi-shopping-cart"
                 :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
               ></Button>
             </div> -->
+            </div>
           </div>
-        </div>
-      </template>
-    </DataView>
+        </template>
+      </DataView>
+    </div>
   </div>
-  </div>
- 
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
@@ -136,18 +130,13 @@ export default {
     };
   },
   async mounted() {
-   
-      await this.$store.dispatch('product/loadProducts', {forceRefresh : true});
-      this.products = this.$store.getters["product/getProducts"];
-    
-  
+    await this.$store.dispatch("product/loadProducts", { forceRefresh: true });
+    this.products = this.$store.getters["product/getProducts"];
   },
   methods: {
-   
     // onSortChange(event) {
     //   const value = event.value.value;
     //   const sortValue = event.value;
-
     //   if (value.indexOf("!") === 0) {
     //     this.sortOrder = -1;
     //     this.sortField = value.substring(1, value.length);
