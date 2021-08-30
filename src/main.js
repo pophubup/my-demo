@@ -14,7 +14,10 @@ import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
 import ScrollPanel from 'primevue/scrollpanel';
 import ProgressSpinner from 'primevue/progressspinner';
-
+import Divider from 'primevue/divider';
+import Carousel from 'primevue/carousel';
+import InputText from 'primevue/inputtext';
+import Textarea from 'primevue/textarea';
 const app = createApp(App);
 app.use(PrimeVue);
 app.component('Button', Button);
@@ -27,6 +30,10 @@ app.component('Dialog', Dialog);
 app.component('Card', Card);
 app.component('ScrollPanel', ScrollPanel);
 app.component('ProgressSpinner', ProgressSpinner);
+app.component('Divider', Divider)
+app.component('Carousel', Carousel)
+app.component('InputText', InputText)
+app.component('Textarea',Textarea)
 app.use(ToastService);
 app.use(router);
 app.use(store);

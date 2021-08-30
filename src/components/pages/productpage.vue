@@ -29,13 +29,13 @@
       <!-- </div> -->
     </Dialog>
     <h2>圖片展示頁</h2>
-    <div class="card">
+    <div class="p-col-12">
       <DataView
         :value="products"
         :layout="layout"
         :paginator="true"
         :rows="6"
-        st
+        style ="cursor:pointer;"
       >
         <!-- <template #header> -->
         <!-- <div class="p-grid p-nogutter"> -->
