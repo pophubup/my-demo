@@ -14,11 +14,12 @@ import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
 import ScrollPanel from 'primevue/scrollpanel';
 import ProgressSpinner from 'primevue/progressspinner';
+import InputText from "primevue/inputtext";
+import Textarea from 'primevue/textarea';
 import Divider from 'primevue/divider';
 import Carousel from 'primevue/carousel';
-import InputText from 'primevue/inputtext';
-import Textarea from 'primevue/textarea';
 import OrderList from 'primevue/orderlist';
+
 const app = createApp(App);
 app.use(PrimeVue);
 app.component('Button', Button);
@@ -36,6 +37,7 @@ app.component('Carousel', Carousel)
 app.component('InputText', InputText)
 app.component('Textarea', Textarea)
 app.component('OrderList',OrderList)
+
 app.use(ToastService);
 app.use(router);
 app.use(store);
