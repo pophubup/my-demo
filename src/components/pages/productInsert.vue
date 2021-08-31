@@ -1,6 +1,6 @@
 <template>
   <div class="p-col-12" style="padding-top: 50px">
-    <h2>圖片新增頁</h2>
+    <h2>圖片新增123</h2>
     <Toast />
     <div style="padding-right: 30px; padding-left: 30px">
       <FileUpload
