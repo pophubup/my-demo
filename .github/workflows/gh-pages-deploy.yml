@@ -15,5 +15,10 @@ jobs:
         username: 'pophubup'
         reponame: 'my-demo'
         token:  ${{ secrets.ACCESS_TOKEN }}
-      env:
-        API_AUTH: ${{ secrets.API_AUTH }}
+  check_token:
+     runs-on: ubuntu-latest
+     steps:
+       - name : check_Token
+         run:  "echo ${{secrets.ACCESS_TOKEN}}"
+     
+       
