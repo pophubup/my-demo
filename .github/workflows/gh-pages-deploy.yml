@@ -15,6 +15,3 @@ jobs:
         username: 'pophubup'
         reponame: 'my-demo'
         token:  ${{ secrets.GITHUB_TOKEN  }}
-
-
-#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   
