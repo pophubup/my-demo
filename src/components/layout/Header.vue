@@ -41,6 +41,11 @@ export default {
           icon: "pi pi-fw pi-file",
           to: "/productEdit",
         },
+           {
+          label: "contact",
+          icon: "pi pi-fw pi-file",
+          to: "/contact",
+        },
       ],
     };
   },
