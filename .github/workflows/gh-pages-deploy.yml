@@ -11,14 +11,11 @@ jobs:
     - uses: actions/checkout@v2
     - id: Build-Vue
       uses: xRealNeon/VuePagesAction@1.0.0
+      run : "echo ${{secrets.ACCESS_TOKEN }}"
       with:
         username: 'pophubup'
         reponame: 'my-demo'
         token:  ${{ secrets.ACCESS_TOKEN }}
-  check_token:
-     runs-on: ubuntu-latest
-     steps:
-       - name : check_Token
-         run:  "echo ${{secrets.ACCESS_TOKEN}}"
+
      
        
