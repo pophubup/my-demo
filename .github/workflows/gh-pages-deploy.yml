@@ -14,9 +14,9 @@ jobs:
       with:
         username: 'pophubup'
         reponame: 'my-demo'
-        token:  ${{ secrets.ACCESS_TOKEN }}
+        token:  ${{ secrets.UpdateRepostiroty  }}
       env:
         API_AUTH: ${{ secrets.API_AUTH }}
 
 
-#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 
+#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  
