@@ -24,6 +24,21 @@
                      <Button type="submit" label="確定"  />
                 </div>
             </form>
+            <OrderList v-model="cars" listStyle="height:auto" dataKey="vin">
+    <template #header>
+        List of Cars
+    </template>
+    <template #item="slotProps">
+        <div class="p-caritem">
+            <img :src="slotProps.item.file.objectURL" style="width">
+            <div>
+                <span class="p-caritem-vin">{{slotProps.item.name}}</span>
+                <span> {{slotProps.item.description}}</span>
+            </div>
+        </div>
+    </template>
+</OrderList>
+
         </div>
      </div>
      </div>
@@ -35,6 +50,7 @@
 export default {
    data() {
      return {
+       cars:[ ],
        name :'',
        description:'',
        file:'',
@@ -47,14 +63,14 @@ export default {
              description : this.description,
             file : this.file
           }
+          this.cars.push(obj)
           console.log(obj)
      },
      onUpload(event) {
      
-       this.file = event.files[0]
-       console.log(this.file)
-            this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-        }
+         this.file = event.files[0]
+         this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
+      },
    },
 
 };
