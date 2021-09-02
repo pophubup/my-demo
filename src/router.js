@@ -11,14 +11,10 @@ const router = createRouter({
         { path: "/", redirect: "/main" },
         { path: "/main", component: main },
         { path: "/product", component: product },
-
         { path: "/productInsert", component: productInsert },
         { path: "/productEdit", component: productEdit },
-
-        // { path: "/productInsertOrEdit", component: productInsertOrEdit },
-        {path:"/contact",component:contact},
-
-        { path: "/:notFound(.*)", component: NotFound },
+        { path: "/contact", component: contact },
+         { path: "/:notFound(.*)", component: NotFound }
     ],
 });
 

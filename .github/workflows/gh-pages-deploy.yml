@@ -2,7 +2,7 @@ name: GitHub Actions Build and Deploy Demo
 on:
   push:
     branches:
-      - dev
+      - feature/productpage開發
 jobs:
   build_vue:
     runs-on: ubuntu-latest
@@ -14,6 +14,4 @@ jobs:
       with:
         username: 'pophubup'
         reponame: 'my-demo'
-        token:  ${{ secrets.ACCESS_TOKEN }}
-      env:
-        API_AUTH: ${{ secrets.API_AUTH }}
+        token:  ${{ secrets.GITHUB_TOKEN  }}
