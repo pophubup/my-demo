@@ -1,5 +1,4 @@
 <template>
-
   <div class="p-col-12" style="padding-top: 90px">
     <div style="padding-right: 30px; padding-left: 30px">
       <div class="p-shadow-13" >
@@ -38,47 +37,58 @@
          
                
             </div>
-        </div>
-    </template>
-</OrderList>
 
+         
+          <OrderList v-model="cars" listStyle="height:auto" dataKey="vin">
+            <template #header> List of Cars </template>
+            <template #item="slotProps">
+              <div class="p-caritem">
+                <img :src="slotProps.item.file.objectURL" style="width" />
+                <div>
+                  <span class="p-caritem-vin">{{ slotProps.item.name }}</span>
+                  <span> {{ slotProps.item.description }}</span>
+                </div>
+              </div>
+            </template>
+          </OrderList>
         </div>
-     </div>
-     </div>
-     </div>
- 
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-   data() {
-     return {
-       cars:[ ],
-       name :'',
-       description:'',
-       file:'',
-     }
-   },
-   methods: {
-     onSubmit(){
-          const obj = {
-             name : this.name,
-             description : this.description,
-            file : this.file
-          }
-          this.cars.push(obj)
-          console.log(obj)
-     },
-     onUpload(event) {
-     
-         this.file = event.files[0]
-         this.$toast.add({severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000});
-      },
-   },
-
+  data() {
+    return {
+      cars: [],
+      name: "",
+      description: "",
+      file: "",
+    };
+  },
+  methods: {
+    onSubmit() {
+      const obj = {
+        name: this.name,
+        description: this.description,
+        file: this.file,
+      };
+      this.cars.push(obj);
+      console.log(obj);
+    },
+    onUpload(event) {
+      this.file = event.files[0];
+      this.$toast.add({
+        severity: "info",
+        summary: "Success",
+        detail: "File Uploaded",
+        life: 3000,
+      });
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
