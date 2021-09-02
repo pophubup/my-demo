@@ -23,7 +23,7 @@
 export default {
   methods: {
     onUpload(event) {
-      // this.$store.dispatch("product/insertProducts", event.files);
+      this.$store.dispatch("product/insertProducts", event.files);
       this.$toast.add({
         severity: "info",
         summary: "上傳成功",
