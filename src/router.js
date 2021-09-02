@@ -13,8 +13,8 @@ const router = createRouter({
         { path: "/product", component: product },
         { path: "/productInsert", component: productInsert },
         { path: "/productEdit", component: productEdit },
-            { path: "/contact", component: contact },
-            { path: "/:notFound(.*)", component: NotFound },
+        { path: "/contact", component: contact },
+         { path: "/:notFound(.*)", component: NotFound }
     ],
 });
 
