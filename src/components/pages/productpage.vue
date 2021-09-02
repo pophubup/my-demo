@@ -34,7 +34,10 @@
         :value="products"
         :layout="layout"
         :paginator="true"
-        :rows="6"
+
+        :rows="8"
+
+
         style="cursor: pointer"
       >
         <!-- <template #header> -->
@@ -97,7 +100,7 @@
         </template>
 
         <template #grid="slotProps">
-          <div class="p-col-12 p-md-4">
+          <div class="p-col-12 p-md-3 ">
             <div class="product-grid-item card">
               <!-- <div class="product-grid-item-top">
                <div>
@@ -116,7 +119,7 @@
             </div>-->
               <div class="product-grid-item-content">
                 <img
-                  style="width: 450px; height: 300px"
+                  class="product-grid-item-content-maxWidth"
                   :src="slotProps.data.image"
                   :alt="slotProps.data.name"
                   @click="imgclick(slotProps.data)"
@@ -201,6 +204,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.product-grid-item-content-maxWidth{
+  //使用者須訂好size為1:1比例
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.card{
+  box-shadow: none !important;
+}
+.product-grid-item {
+  margin: 0.5rem ;
+  border: 0px solid #dee2e6 !important;
+}
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   img {
     width: 200px !important;
@@ -215,7 +232,7 @@ export default {
 
 .card {
   background: #ffffff;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
   border-radius: 4px;
