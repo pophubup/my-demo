@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="p-col-12" style="padding-top: 50px">
     <h1 class="">ss</h1>
   </div>
@@ -29,7 +30,7 @@
         <Button type="button" label="Send" class="p-d-block p-mx-auto" />
       </div>
     </div>
-  </div>
+  </div></div>
 </template>
 
 <script>
