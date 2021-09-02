@@ -18,22 +18,25 @@
                 </div>
                 <div class="p-field p-col-12 p-md-6">
                     <label for="city">圖片</label>
-                    <FileUpload mode="basic" name="demo[]" accept="image/*" :auto="true"  :maxFileSize="1000000" :customUpload="true"  @uploader="onUpload" />
+                    <FileUpload  name="demo[]" :customUpload="true" @uploader="myUploader" accept="image/*" :auto="true"  :maxFileSize="1000000"  />
                 </div>
                 <div class="p-col-1 p-offset-11">
                      <Button type="submit" label="確定"  />
                 </div>
             </form>
-            <OrderList v-model="cars" listStyle="height:auto" dataKey="vin">
+            <OrderList v-model="cars" listStyle="height:auto" dataKey="name">
     <template #header>
         List of Cars
     </template>
     <template #item="slotProps">
         <div class="p-caritem">
-            <img :src="slotProps.item.file.objectURL" style="width">
-            <div>
-                <span class="p-caritem-vin">{{slotProps.item.name}}</span>
-                <span> {{slotProps.item.description}}</span>
+          
+            <div class="p-grid"> 
+             <div class="p-col-4" style="    padding-top: 10px;">  <img :src="slotProps.item.file.objectURL" style="width:300px"></div>
+             <div class="p-col">名稱:     <span class="p-caritem-vin">{{slotProps.item.name}}</span></div>
+               <div class="p-col ">敘述: <span> {{slotProps.item.description}}</span></div>
+         
+               
             </div>
         </div>
     </template>
