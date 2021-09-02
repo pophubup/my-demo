@@ -11,13 +11,13 @@ const router = createRouter({
         { path: "/", redirect: "/main" },
         { path: "/main", component: main },
         { path: "/product", component: product },
-<<<<<<< HEAD
+
         { path: "/productInsert", component: productInsert },
         { path: "/productEdit", component: productEdit },
-=======
-        { path: "/productInsertOrEdit", component: productInsertOrEdit },
+
+        // { path: "/productInsertOrEdit", component: productInsertOrEdit },
         {path:"/contact",component:contact},
->>>>>>> cy/feature/Contact
+
         { path: "/:notFound(.*)", component: NotFound },
     ],
 });
