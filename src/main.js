@@ -20,7 +20,6 @@ import Divider from 'primevue/divider';
 import Carousel from 'primevue/carousel';
 import OrderList from 'primevue/orderlist';
 
-
 const app = createApp(App);
 app.use(PrimeVue);
 app.component('Button', Button);
@@ -43,7 +42,7 @@ app.component('InputText', InputText)
 app.component('Textarea', Textarea)
 app.component('OrderList',OrderList)
 
-
+console.log(process.env)
 app.use(ToastService);
 app.use(router);
 app.use(store);
