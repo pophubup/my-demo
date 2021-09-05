@@ -83,6 +83,7 @@ export default {
   async mounted() {
     await this.$store.dispatch("product/loadProducts", { forceRefresh: true });
     this.products = this.$store.getters["product/getProducts"];
+    
   },
 };
 </script>

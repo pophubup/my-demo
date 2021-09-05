@@ -45,16 +45,11 @@ export default {
           label: "商品頁",
           icon: "pi pi-fw pi-file",
           to: "/product",
-        },
+        },       
         {
           label: "商品新增頁",
           icon: "pi pi-fw pi-file",
-          to: "/productInsert",
-        },
-        {
-          label: "商品修改頁",
-          icon: "pi pi-fw pi-file",
-          to: "/productEdit",
+          to: "/prdouctInsert",
         },
         {
           label: "contact",

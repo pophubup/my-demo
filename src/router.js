@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import main from "./components/pages/mainpage.vue";
 import product from "./components/pages/productpage.vue";
-import productInsert from './components/pages/productInsert.vue';
-import productEdit from './components/pages/prdouctEdit.vue';
+import prdouctInsert from './components/pages/prdouctInsert.vue';
 import NotFound from './components/NotFound.vue'
 import contact from './components/pages/contact.vue';
 const router = createRouter({
@@ -11,8 +10,7 @@ const router = createRouter({
         { path: "/", redirect: "/main" },
         { path: "/main", component: main },
         { path: "/product", component: product },
-        { path: "/productInsert", component: productInsert },
-        { path: "/productEdit", component: productEdit },
+        { path: "/prdouctInsert", component: prdouctInsert },
         { path: "/contact", component: contact },
          { path: "/:notFound(.*)", component: NotFound }
     ],

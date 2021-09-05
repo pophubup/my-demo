@@ -1,4 +1,4 @@
-import { getProducts, InsertPircture, InsertProducts } from '../firebase';
+import { GetFirstDataFromEveryGroup, InsertProducts } from '../APIFunctions'
 function generateUUID() { // Public Domain/MIT
     var d = new Date().getTime();//Timestamp
     var d2 = (performance && performance.now && (performance.now() * 1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
@@ -20,27 +20,17 @@ export default {
         if (!payload.forceRefresh) {
             return;
         }
-
-        const products = await getProducts();
+        const products = await GetFirstDataFromEveryGroup();
         console.log(products)
         context.commit('setProducts', products);
     },
-    insertProducts(context, payload) {
-
-        payload.forEach(async g => {
-            let obj = {
-                category: '123',
-                description: '456',
-                id: generateUUID(),
-                name: g.name,
-                file: g,
-                image: ''
-            };
-            console.log(payload)
-            await InsertPircture(obj);
-            await InsertProducts(obj)
-            context.commit('InsertProduct', obj);
-        });
+    async insertProducts(_, payload) {
+      for(const[key, value] of payload){
+         console.log(key, value)
+       };
+       const result = await InsertProducts(payload);
+       console.log(result)
+        //context.commit('InsertProduct', obj);
 
     }
 }
