@@ -4,7 +4,11 @@ import mutations from './mutations';
 const productModule = {
     namespaced: true,
     state: {
-        products: []
+        products: [],
+        response: {
+            isSuccess: false,
+            message: ""
+        }
     },
     getters: getters,
     actions: actions,

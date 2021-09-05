@@ -5,7 +5,7 @@ import group from './groupModule/index.js';
 const store = createStore({
     modules: {
         product: product,
-group :group
+        group :group
     }
 });
 

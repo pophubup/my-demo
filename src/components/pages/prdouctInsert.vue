@@ -1,5 +1,6 @@
 <template>
   <div class="p-col-12" style="padding-top: 90px">
+     <Toast />
     <div style="padding-right: 30px; padding-left: 30px">
       <div class="p-shadow-13">
         <div class="card" style="padding: 30px">
@@ -74,15 +75,7 @@ export default {
       // this.groups = this.$store.getters["group/getGroups"];
   },
   methods: {
-    onSubmit() {
-
-      this.formData.append("name", this.name);
-      this.formData.append("description", this.description);
-      this.formData.append("labelName", this.labelName);
-      this.file.forEach(g=>{
-               this.formData.append("files", g)
-
-      });
+   async onSubmit() {
        if( this.name == "" || this.labelName == ""){
          this.$toast.add({
             severity: "warn",
@@ -92,17 +85,25 @@ export default {
          });
          return;
        }
-      this.$store.dispatch("product/insertProducts", this.formData);
+      this.formData.append("name", this.name);
+      this.formData.append("description", this.description);
+      this.formData.append("labelName", this.labelName);
+      this.file.forEach(g=>{
+               this.formData.append("files", g)
+
+      });
+     
+      await this.$store.dispatch("product/insertProducts", this.formData);
+      const reuslt = this.$store.getters["product/getMessageFromApi"]
+      console.log(reuslt.message)
+        this.$toast.add({severity:'success', summary: `${reuslt.message}`, detail:'', life: 3000});
     },
     myUploader(event) {
-  
       this.file = event.files;
-  
- 
       this.$toast.add({
         severity: "info",
-        summary: "Success",
-        detail: "暫存成功",
+        summary: "暫存成功",
+        detail: "",
         life: 3000,
       });
     },
