@@ -37,7 +37,7 @@
                 @uploader="myUploader"
                 accept="image/*"
                 :auto="true"
-                :maxFileSize="1000000"
+                :maxFileSize="10000000"
                 :showUploadButton="false"
                 :showCancelButton="false"
                 style="curor: pointer"
@@ -87,7 +87,7 @@ export default {
          this.$toast.add({
             severity: "warn",
             summary: "Warn Message",
-            detail: "請填入名稱或標籤",
+            detail: "請填寫名稱或標籤",
             life: 3000,
          });
          return;
