@@ -115,6 +115,7 @@
               > 
             </div>-->
               <div class="product-grid-item-content">
+                
                 <img
                   class="product-grid-item-content-maxWidth"
                   :src="slotProps.data.image"

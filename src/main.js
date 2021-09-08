@@ -18,11 +18,12 @@ import InputText from "primevue/inputtext";
 import Textarea from 'primevue/textarea';
 import Divider from 'primevue/divider';
 import Carousel from 'primevue/carousel';
-import OrderList from 'primevue/orderlist';
-
+import TreeTable from 'primevue/treetable';
+import Column from 'primevue/column';
 // import axios from 'axios'
 // import VueAxios from 'vue-axios'
 const app = createApp(App);
+app.config.devtools = true
 app.use(PrimeVue);
 app.component('Button', Button);
 app.component('FileUpload', FileUpload);
@@ -38,13 +39,10 @@ app.component('Divider', Divider)
 app.component('Carousel', Carousel)
 app.component('InputText', InputText)
 app.component('Textarea', Textarea)
-app.component('OrderList',OrderList)
-
-
-
+app.component('TreeTable', TreeTable)
+app.component('Column',Column)
 // app.use(VueAxios, axios);
 // app.provide('axios', app.config.globalProperties.axios) ;
-
 console.log(process.env)
 app.use(ToastService);
 app.use(router);

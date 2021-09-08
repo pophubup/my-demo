@@ -17,3 +17,10 @@ export const GetGroups = async () => {
      const reuslt = await res.json();
      return reuslt;
 }
+export const GetOrganizationGroup = async () => {
+  
+     const res = await fetch(`${process.env.VUE_APP_URL}/api/Group/GetOrganizationViewModels`);
+     const reuslt = await res.json();
+     return reuslt;
+
+}

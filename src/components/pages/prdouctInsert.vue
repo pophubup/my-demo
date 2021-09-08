@@ -1,5 +1,5 @@
 <template>
-  <div class="p-col-12" style="padding-top: 90px">
+  <div class="p-col-12" style="padding-top: 80px">
      <Toast />
     <div style="padding-right: 30px; padding-left: 30px">
       <div class="p-shadow-13">

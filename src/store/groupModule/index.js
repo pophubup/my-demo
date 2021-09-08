@@ -4,7 +4,8 @@ import mutations from './mutations';
 const groupModule = {
     namespaced: true,
     state: {
-        groups: []
+        groups: [],
+        organization:[]
     },
     getters: getters,
     actions: actions,

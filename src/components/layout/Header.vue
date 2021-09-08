@@ -53,6 +53,11 @@ export default {
           icon: "pi pi-fw pi-file",
           to: "/prdouctInsert",
         },
+         {
+          label: "商品修改頁",
+          icon: "pi pi-fw pi-file",
+          to: "/productEdit",
+        },
         {
           label: "contact",
           icon: "pi pi-fw pi-file",
