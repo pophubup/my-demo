@@ -201,11 +201,11 @@ export default {
     //     this.sortKey = sortValue;
     //   }
     // },
-  },  created() {
-    const api = 'https://yohoho123.azurewebsites.net/api/group/getgroups';
-    this.axios.get(api).then(response => {
-      console.log(response);
-    });
+  // },  created() {
+  //   const api = 'https://yohoho123.azurewebsites.net/api/group/getgroups';
+  //   this.axios.get(api).then(response => {
+  //     console.log(response);
+  //   });
   },
 };
 </script>

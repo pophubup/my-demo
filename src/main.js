@@ -20,8 +20,8 @@ import Divider from 'primevue/divider';
 import Carousel from 'primevue/carousel';
 import OrderList from 'primevue/orderlist';
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
 const app = createApp(App);
 app.use(PrimeVue);
 app.component('Button', Button);
@@ -42,8 +42,8 @@ app.component('OrderList',OrderList)
 
 
 
-app.use(VueAxios, axios);
-app.provide('axios', app.config.globalProperties.axios) ;
+// app.use(VueAxios, axios);
+// app.provide('axios', app.config.globalProperties.axios) ;
 
 console.log(process.env)
 app.use(ToastService);
