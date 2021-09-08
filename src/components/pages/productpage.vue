@@ -34,10 +34,7 @@
         :value="products"
         :layout="layout"
         :paginator="true"
-
         :rows="8"
-
-
         style="cursor: pointer"
       >
         <!-- <template #header> -->
@@ -100,7 +97,7 @@
         </template>
 
         <template #grid="slotProps">
-          <div class="p-col-12 p-md-3 ">
+          <div class="p-col-12 p-md-3">
             <div class="product-grid-item card">
               <!-- <div class="product-grid-item-top">
                <div>
@@ -150,6 +147,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -186,6 +184,10 @@ export default {
       this.carcontent = data.description;
       this.display = true;
     },
+    getApiTest(){
+      this.a
+    }
+
     // onSortChange(event) {
     //   const value = event.value.value;
     //   const sortValue = event.value;
@@ -199,23 +201,27 @@ export default {
     //     this.sortKey = sortValue;
     //   }
     // },
+  },  created() {
+    const api = 'https://yohoho123.azurewebsites.net/api/group/getgroups';
+    this.axios.get(api).then(response => {
+      console.log(response);
+    });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-.product-grid-item-content-maxWidth{
+.product-grid-item-content-maxWidth {
   //使用者須訂好size為1:1比例
   max-width: 500px;
   max-height: 500px;
 }
 
-.card{
+.card {
   box-shadow: none !important;
 }
 .product-grid-item {
-  margin: 0.5rem ;
+  margin: 0.5rem;
   border: 0px solid #dee2e6 !important;
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
