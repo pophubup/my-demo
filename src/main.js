@@ -35,13 +35,8 @@ app.component('ProgressSpinner', ProgressSpinner);
 app.component('Divider', Divider)
 app.component('Carousel', Carousel)
 app.component('InputText', InputText)
-app.component('Textarea',Textarea)
-app.component('Divider', Divider)
-app.component('Carousel', Carousel)
-app.component('InputText', InputText)
 app.component('Textarea', Textarea)
 app.component('OrderList',OrderList)
-
 console.log(process.env)
 app.use(ToastService);
 app.use(router);

@@ -1,5 +1,6 @@
 <template>
-  <Menubar :model="items" class="p-col-12" style="position: fixed !important">
+<div class="p-col-12" style="position: fixed !important;    padding: 0px;">
+  <Menubar :model="items" >
     <!-- <template #start>
         Before
     </template>
@@ -24,6 +25,7 @@
 https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png"
       />
     </a>
+  </div>
   </div>
 </template>
 

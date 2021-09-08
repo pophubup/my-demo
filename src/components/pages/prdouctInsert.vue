@@ -1,5 +1,6 @@
 <template>
   <div class="p-col-12" style="padding-top: 90px">
+     <Toast />
     <div style="padding-right: 30px; padding-left: 30px">
       <div class="p-shadow-13">
         <div class="card" style="padding: 30px">
@@ -37,7 +38,7 @@
                 @uploader="myUploader"
                 accept="image/*"
                 :auto="true"
-                :maxFileSize="1000000"
+                :maxFileSize="10000000"
                 :showUploadButton="false"
                 :showCancelButton="false"
                 style="curor: pointer"
@@ -74,8 +75,16 @@ export default {
       // this.groups = this.$store.getters["group/getGroups"];
   },
   methods: {
-    onSubmit() {
-
+   async onSubmit() {
+       if( this.name == "" || this.labelName == ""){
+         this.$toast.add({
+            severity: "warn",
+            summary: "Warn Message",
+            detail: "請填寫名稱或標籤",
+            life: 3000,
+         });
+         return;
+       }
       this.formData.append("name", this.name);
       this.formData.append("description", this.description);
       this.formData.append("labelName", this.labelName);
@@ -83,26 +92,18 @@ export default {
                this.formData.append("files", g)
 
       });
-       if( this.name == "" || this.labelName == ""){
-         this.$toast.add({
-            severity: "warn",
-            summary: "Warn Message",
-            detail: "請填入名稱或標籤",
-            life: 3000,
-         });
-         return;
-       }
-      this.$store.dispatch("product/insertProducts", this.formData);
+     
+      await this.$store.dispatch("product/insertProducts", this.formData);
+      const reuslt = this.$store.getters["product/getMessageFromApi"]
+      console.log(reuslt.message)
+        this.$toast.add({severity:'success', summary: `${reuslt.message}`, detail:'', life: 3000});
     },
     myUploader(event) {
-  
       this.file = event.files;
-  
- 
       this.$toast.add({
         severity: "info",
-        summary: "Success",
-        detail: "暫存成功",
+        summary: "暫存成功",
+        detail: "",
         life: 3000,
       });
     },

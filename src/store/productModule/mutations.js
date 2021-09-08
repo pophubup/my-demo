@@ -2,7 +2,9 @@ export default {
     setProducts(state, payload) {
         state.products = payload;
     },
-    InsertProduct(state, payload) {
-        state.products.push(payload);
+    setResponse(state, payload) {
+         console.log(payload)
+        state.response.isSuccess = payload.isSuccess
+        state.response.message = payload.message
     }
 }
