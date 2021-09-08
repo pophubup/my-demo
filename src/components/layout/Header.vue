@@ -1,5 +1,6 @@
 <template>
-  <Menubar :model="items" class="p-col-12" style="position: fixed !important">
+<div class="p-col-12" style="position: fixed !important;    padding: 0px;">
+  <Menubar :model="items" >
     <!-- <template #start>
         Before
     </template>
@@ -25,6 +26,7 @@ https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.sv
       />
     </a>
   </div>
+  </div>
 </template>
 
 <script>
@@ -45,16 +47,11 @@ export default {
           label: "商品頁",
           icon: "pi pi-fw pi-file",
           to: "/product",
-        },
+        },       
         {
           label: "商品新增頁",
           icon: "pi pi-fw pi-file",
-          to: "/productInsert",
-        },
-        {
-          label: "商品修改頁",
-          icon: "pi pi-fw pi-file",
-          to: "/productEdit",
+          to: "/prdouctInsert",
         },
         {
           label: "contact",

@@ -1,18 +1,14 @@
 import getters from "./getters";
 import actions from "./actions";
 import mutations from './mutations';
-const productModule = {
+const groupModule = {
     namespaced: true,
     state: {
-        products: [],
-        response: {
-            isSuccess: false,
-            message: ""
-        }
+        groups: []
     },
     getters: getters,
     actions: actions,
     mutations: mutations
 };
 
-export default productModule;
+export default groupModule;
