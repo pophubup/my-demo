@@ -186,7 +186,7 @@ export default {
       this.display = true;
     },
     getApiTest(){
-      this.a
+      // this.a
     }
 
     // onSortChange(event) {

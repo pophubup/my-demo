@@ -20,6 +20,8 @@ import Divider from 'primevue/divider';
 import Carousel from 'primevue/carousel';
 import TreeTable from 'primevue/treetable';
 import Column from 'primevue/column';
+import DataTable from 'primevue/datatable';
+import ColumnGroup from 'primevue/columngroup';     
 // import axios from 'axios'
 // import VueAxios from 'vue-axios'
 const app = createApp(App);
@@ -40,7 +42,9 @@ app.component('Carousel', Carousel)
 app.component('InputText', InputText)
 app.component('Textarea', Textarea)
 app.component('TreeTable', TreeTable)
-app.component('Column',Column)
+app.component('Column', Column);
+app.component('DataTable', DataTable);
+app.component('ColumnGroup', ColumnGroup)
 // app.use(VueAxios, axios);
 // app.provide('axios', app.config.globalProperties.axios) ;
 console.log(process.env)
