@@ -12,6 +12,22 @@
       <Column field="groupID" header="種類" sortable></Column>
       <Column field="groupName" header="種類名稱" sortable></Column>
       <Column field="createDate" header="種類加入時間" sortable> </Column>
+      <Column :exportable="false" header="種類管理">
+        <template #body="slotProps_0">
+          <Button
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success p-mr-2"
+            @click="editCategory(slotProps_0.data)"
+            title="更改圖檔"
+          />
+          <Button
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            @click="confirmCategory(slotProps_0.data)"
+            title="刪除圖檔"
+          />
+        </template>
+      </Column>
       <template #expansion="slotProps">
         <InnerProductTable
           :lableViewModels="slotProps.data.lableViewModels"
@@ -25,29 +41,44 @@
         />
       </template>
     </DataTable>
-    <DialogsControl
-      :currentlabel="currentlabel"
-      :deleteProduct="deleteProduct"
-      :deleteProductDialog="deleteProductDialog"
-      :displayModal="displayModal"
-      :labels="labels"
-      :selectedvalue="selectedvalue"
-      :kind="kind"
-      :node="node"
-      :onUpload="onUpload"
-      :closeModal="closeModal"
-    />
+    <Dialog
+      :header="header"
+      v-model:visible="display"
+      :style="{ width: '50vw' }"
+      :modal="true"
+    >
+      <Content
+        :currentlabel="currentlabel"
+        :labels="labels"
+        :selectedvalue="selectedvalue"
+        :node="node"
+        :onUpload="onUpload"
+        :closeModal="closeModal"
+        :kind="kind"
+      />
+
+      <template #footer>
+        <Button
+          label="取消"
+          icon="pi pi-times"
+          @click="display = false"
+          class="p-button-text"
+        />
+        <Button label="確定" icon="pi pi-check" @click="closeModal" />
+      </template>
+    </Dialog>
+
     <Toast />
   </Container>
 </template>
 
 <script>
 import InnerProductTable from "./subcomponents/InnerProductTable.vue";
-import DialogsControl from "./subcomponents/DialogsForEdit.vue";
+import Content from "./subcomponents/DialogsContent.vue";
 export default {
   components: {
     InnerProductTable,
-    DialogsControl,
+    Content,
   },
   data() {
     return {
@@ -58,10 +89,10 @@ export default {
       labels: [],
       currentlabel: "",
       node: null,
-      deleteProductDialog: false,
-      displayModal: false,
+      display: false,
       currentLevel: null,
       kind: null,
+      header: null,
     };
   },
   methods: {
@@ -99,29 +130,36 @@ export default {
     },
     async editPic(node) {
       this.node = node;
-      this.kind = "editimg";
-      this.displayModal = true;
+      this.kind = "editPic";
+      this.display = true;
       this.currentlabel = `目前標籤(${this.currentLevel.labelName})`;
+      this.header = "修改圖片";
       await this.$store.dispatch("label/loadLabels", node.id);
       this.labels = this.$store.getters["label/getLabels"];
     },
+    confirmDeletePic(node) {
+      this.node = node;
+      this.kind = "deletePic";
+      this.display = true;
+      this.header = "刪除圖片";
+      console.log(node);
+    },
     editLabel(node) {
       this.node = node;
-      this.kind = "editlabel";
-      this.displayModal = true;
+      this.kind = "editLabel";
+      this.display = true;
+      this.header = "刪除標籤";
       console.log(node);
     },
-    confirmDeletePic(node) {
-      console.log(node);
+    deleteLabel(node) {
       this.node = node;
-      this.kind = "deleteimg";
-      this.displayModal = true;
-    },
-    deleteLabel(obj) {
-      console.log(obj);
+      this.kind = "deleteLabel";
+      this.display = true;
+      this.header = "刪除圖片";
+      console.log(node);
     },
     deleteProduct() {
-      this.displayModal = false;
+      this.display = false;
       this.$toast.add({
         severity: "success",
         summary: "Successful",
@@ -129,8 +167,22 @@ export default {
         life: 3000,
       });
     },
+    editCategory(node) {
+      this.node = node;
+      this.kind = "editCategory";
+      this.display = true;
+      this.header = "編輯種類";
+      console.log(node);
+    },
+    confirmCategory(node) {
+      this.node = node;
+      this.kind = "deleteCategory";
+      this.display = true;
+      this.header = "刪除種類";
+      console.log(node);
+    },
     closeModal(e) {
-      this.displayModal = false;
+      this.display = false;
       console.log(e);
     },
     onUpload(e) {
@@ -144,59 +196,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.product-image {
-  width: 50px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-.product-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  width: 100%;
-
-  img {
-    width: 75px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin-right: 1rem;
-  }
-
-  .product-list-detail {
-    flex: 1 1 0;
-  }
-
-  .product-list-action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .product-category-icon {
-    vertical-align: middle;
-    margin-right: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  .product-category {
-    vertical-align: middle;
-    line-height: 1;
-    font-size: 0.875rem;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .product-item {
-    flex-wrap: wrap;
-
-    .image-container {
-      width: 100%;
-      text-align: center;
-    }
-
-    img {
-      margin: 0 0 1rem 0;
-      width: 100px;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>

@@ -41,7 +41,7 @@
             <img :src="slotProps_3.data.url" style="width: 150px;" />
           </template>
         </Column>
-        <Column :exportable="false" header="修改圖片">
+        <Column :exportable="false" header="圖片管理">
           <template #body="slotProps_4">
             <Button
               icon="pi pi-pencil"
