@@ -1,5 +1,7 @@
 <template>
   <Container>
+    <Toast />
+    <Button label="新增商品" @click="ProductInsert" />
     <DataTable
       :value="nodes"
       v-model:expandedRows="expandedRows"
@@ -47,25 +49,24 @@
       :style="{ width: '50vw' }"
       :modal="true"
     >
-      <Content
-        :currentlabel="currentlabel"
-        :labels="labels"
-        :selectedvalue="selectedvalue"
-        :node="node"
-        :onUpload="onUpload"
-        :closeModal="closeModal"
-        :kind="kind"
-      />
-
-      <template #footer>
-        <Button
-          label="取消"
-          icon="pi pi-times"
-          @click="display = false"
-          class="p-button-text"
+      <div v-if="kind == 'InsertProduct'">
+        <DialogsInsertContent @add-Newimage="addNewimage" />
+      </div>
+      <div v-else>
+        <Content
+          :currentlabel="currentlabel"
+          :labels="labels"
+          :selectedvalue="selectedvalue"
+          :node="node"
+          :onUpload="onUpload"
+          :kind="kind"
+          :description="description"
+          :labelName="labelName"
+          :myUploader="myUploader"
+          :selectedItem="selectedItem"
+          :groups="groups"
         />
-        <Button label="確定" icon="pi pi-check" @click="closeModal" />
-      </template>
+      </div>
     </Dialog>
 
     <Toast />
@@ -75,10 +76,12 @@
 <script>
 import InnerProductTable from "./subcomponents/InnerProductTable.vue";
 import Content from "./subcomponents/DialogsContent.vue";
+import DialogsInsertContent from "./subcomponents/DialogsInsertContent.vue";
 export default {
   components: {
     InnerProductTable,
     Content,
+    DialogsInsertContent,
   },
   data() {
     return {
@@ -175,18 +178,70 @@ export default {
       console.log(node);
     },
     confirmCategory(node) {
-      this.node = node;
       this.kind = "deleteCategory";
       this.display = true;
       this.header = "刪除種類";
       console.log(node);
     },
-    closeModal(e) {
-      this.display = false;
-      console.log(e);
+    ProductInsert() {
+      this.kind = "InsertProduct";
+      this.display = true;
+      this.header = "新增產品";
     },
     onUpload(e) {
       console.log(e);
+    },
+    async addNewimage(obj) {
+      const labelName = obj.labelName;
+      const selectedItem = obj.selectedItem;
+      const description = obj.description;
+      const files = obj.files;
+
+      // labelName: this.labelName,
+      //         selectedItem: this.selectedItem,
+      //         description: this.description,
+      //         files: this.files,
+      if (labelName == "") {
+        this.$toast.add({
+          severity: "warn",
+          summary: "Warn Message",
+          detail: "請填寫名稱或標籤",
+          life: 3000,
+        });
+        return;
+      }
+      const arr = [];
+      selectedItem.forEach((g) => {
+        arr.push(g.id);
+      });
+      const formData = new FormData();
+      formData.append("description", description);
+      formData.append("labelName", labelName);
+      formData.append("groupIds", JSON.stringify(arr));
+
+      files.forEach((g) => {
+        formData.append("files", g);
+      });
+      console.log(labelName, arr, description, files);
+      await this.$store.dispatch("product/insertProducts", formData);
+      const reuslt = this.$store.getters["product/getMessageFromApi"];
+
+      this.$toast.add({
+        severity: "success",
+        summary: `${reuslt.message}`,
+        detail: "",
+        life: 3000,
+      });
+      console.log(reuslt.message);
+    },
+    myUploader(e) {
+      this.file = e.files;
+      this.$toast.add({
+        severity: "info",
+        summary: "暫存成功",
+        detail: "",
+        life: 3000,
+      });
     },
   },
   async mounted() {

@@ -1,7 +1,7 @@
 <template>
-<div class="p-col-12" style="position: fixed !important;    padding: 0px;">
-  <Menubar :model="items" >
-    <!-- <template #start>
+  <div class="p-col-12" style="position: fixed !important;    padding: 0px;">
+    <Menubar :model="items">
+      <!-- <template #start>
         Before
     </template>
     <template #item="{item}">
@@ -10,22 +10,22 @@
     <template #end>
         After
     </template> -->
-  </Menubar>
-  <div class="floatIcon">
-    <a class="floatIcon-a" href="https://www.behance.net/kv-photography">
-      <img
-        class="floatIconImg p-mb-2"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/1200px-Facebook_icon_2013.svg.png"
-      />
-    </a>
-    <a class="floatIcon-a" href="https://www.behance.net/kv-photography">
-      <img
-        class="floatIconImg p-mb-2"
-        src="
+    </Menubar>
+    <div class="floatIcon">
+      <a class="floatIcon-a" href="https://www.behance.net/kv-photography">
+        <img
+          class="floatIconImg p-mb-2"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/1200px-Facebook_icon_2013.svg.png"
+        />
+      </a>
+      <a class="floatIcon-a" href="https://www.behance.net/kv-photography">
+        <img
+          class="floatIconImg p-mb-2"
+          src="
 https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png"
-      />
-    </a>
-  </div>
+        />
+      </a>
+    </div>
   </div>
 </template>
 
@@ -47,14 +47,10 @@ export default {
           label: "商品頁",
           icon: "pi pi-fw pi-file",
           to: "/product",
-        },       
-        {
-          label: "商品新增頁",
-          icon: "pi pi-fw pi-file",
-          to: "/prdouctInsert",
         },
-         {
-          label: "商品修改頁",
+
+        {
+          label: "商品修改新增頁",
           icon: "pi pi-fw pi-file",
           to: "/productEdit",
         },
@@ -80,18 +76,15 @@ export default {
 
   color: white;
   text-align: center;
-
-  
 }
 
 .floatIconImg {
   width: 40px;
   height: 40px;
   border-radius: 13px;
-
 }
 .floatIconImg:hover {
-    cursor: pointer;
+  cursor: pointer;
   transform: rotate(360deg);
   transition: transform 0.5s;
   background-color: yellow;
